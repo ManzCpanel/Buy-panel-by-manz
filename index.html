@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> buy panel by manz</title>
+    <title>Buy Panel by Manz</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -37,7 +37,11 @@
             line-height: 1.6;
         }
 
-        /* === HEADER (FROM PRODUCT PAGE) === */
+        .hidden {
+            display: none !important;
+        }
+
+        /* === HEADER === */
         .header {
             background-color: var(--dark-bg);
             color: white;
@@ -57,14 +61,14 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        .main-content h2 {
+        .section-title {
             text-align: center;
             font-size: 2rem;
             margin-bottom: 0.5rem;
             color: var(--primary-color);
             position: relative;
         }
-        .main-content h2::after {
+        .section-title::after {
             content: '';
             display: block;
             width: 80px;
@@ -84,23 +88,10 @@
             font-weight: 600;
         }
 
-        .instruction-box {
-            background-color: #fff3cd;
-            color: #664d03;
-            border: 1px solid #ffecb5;
-            padding: 1rem;
-            margin: 0 auto 2.5rem auto;
-            max-width: 800px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 0.95rem;
-        }
-
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
-            margin-bottom: 5rem; /* Space before payment section */
         }
         .product-card {
             background-color: var(--card-bg);
@@ -162,72 +153,81 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
         }
 
-        /* === PAYMENT SECTION === */
-        #payment-section {
+        /* === PAYMENT PAGE === */
+        #halaman-pembayaran {
+            padding: 2rem 0;
+        }
+        .payment-card {
             padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--card-bg);
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             max-width: 800px;
             margin: 0 auto;
         }
         
-        #payment-section h2 {
-           color: #4776E6;
-           margin-bottom: 10px;
-        }
-         #payment-section h2::after {
-           background: #4776E6;
-        }
-        #payment-section p.subtitle{
+        .payment-summary {
             text-align: center;
-            font-size: 16px;
-            opacity: 0.9;
-            margin-top: -30px;
-            margin-bottom: 30px;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
         }
 
-        .payment-method {
-            background: white;
+        .payment-summary h3 {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-summary #selected-product-name {
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        
+        .payment-summary .total-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .payment-option-btn {
+            flex: 1;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            border: 2px solid #ddd;
+            background-color: #f8f8f8;
+            color: #888;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .payment-option-btn:hover {
+            border-color: var(--secondary-color);
+        }
+        .payment-option-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .payment-details {
+            background: #fdfdfd;
             border-radius: 15px;
             padding: 20px;
-            margin-bottom: 25px;
+            margin-top: 1rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            border: 1px solid #eee;
         }
-        .payment-method:hover {
-            transform: translateY(-5px);
-        }
-        .method-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .method-icon {
-            width: 50px;
-            height: 50px;
-            background: #f5f5f5;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            font-size: 24px;
-            color: #4776E6;
-        }
-        .method-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333;
-        }
-        .method-details {
-            padding-left: 65px;
-        }
-        .method-info {
-            margin-bottom: 8px;
-            font-size: 16px;
-            color: #555;
-        }
+
         .copy-btn {
             background: linear-gradient(to right, #4776E6, #8E54E9);
             color: white;
@@ -241,7 +241,6 @@
         }
         .copy-btn:hover {
             opacity: 0.9;
-            transform: scale(1.05);
         }
         .whatsapp-btn {
             display: block;
@@ -262,6 +261,24 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
+        
+        .back-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .back-btn:hover {
+            text-decoration: underline;
+        }
 
         /* === FOOTER === */
         .footer {
@@ -270,26 +287,6 @@
             text-align: center;
             padding: 2rem 1rem;
             margin-top: 4rem;
-            font-size: 0.9rem;
-        }
-
-        /* === RESPONSIVE STYLES === */
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2rem; }
-            .main-content { padding: 2rem 1rem; }
-            .main-content h2 { font-size: 1.8rem; }
-            .product-card { padding: 1.5rem; }
-            .product-card h3 { font-size: 1.5rem; }
-            .price { font-size: 1.3rem; }
-            .buy-now { padding: 10px 20px; font-size: 1rem; }
-        }
-        @media (max-width: 480px) {
-            .header h1 { font-size: 1.8rem; }
-            .main-content h2 { font-size: 1.6rem; }
-            .product-grid { grid-template-columns: 1fr; }
-            .method-header { flex-direction: column; text-align: center; }
-            .method-icon { margin-right: 0; margin-bottom: 10px; }
-            .method-details { padding-left: 0; text-align: center; }
         }
     </style>
 </head>
@@ -300,22 +297,166 @@
     </header>
 
     <main class="main-content">
-        <section id="produk">
-            <h2>Pilihan Panel Pterodactyl Terbaik di Pontianak</h2>
+
+        <section id="halaman-produk">
+            <h2 class="section-title">Pilihan Panel Pterodactyl</h2>
             <p class="min-price-text">Mulai dari <strong>Rp 1.000</strong> per bulan!</p>
             
-            <div class="instruction-box">
-                <strong>Cara Pembelian:</strong>
-                <p style="margin: 5px 0 0 0;">1. Pilih paket, lalu klik "Beli Sekarang".<br>2. Lakukan pembayaran di bawah.<br>3. Klik tombol konfirmasi & kirim bukti via WhatsApp.</p>
-            </div>
-
             <div class="product-grid">
-                <div class="product-card">
+                 <div class="product-card">
                     <img src="https://via.placeholder.com/150/6C63FF/FFFFFF?text=1GB" alt="Panel Pterodactyl 1GB">
                     <h3>Paket 1GB</h3>
-                    <p>Cocok untuk server ringan dan pemula yang baru memulai pengalaman hosting game.</p>
-                    <span class="price">Rp 1.000 <small>/bulan</small></span>
-                    <a href="#payment-section" class="buy-now" data-product="Paket 1GB Panel Pterodactyl">
+                    <p>Cocok untuk server ringan dan pemula.</p>
+                    <div class="price">Rp 1.000 <small>/bulan</small></div>
+                    <button class="buy-now" data-product-name="Paket 1GB" data-product-price="Rp 1.000">
+                        Beli Sekarang
+                    </button>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150/8A2BE2/FFFFFF?text=3GB" alt="Panel Pterodactyl 3GB">
+                    <h3>Paket 3GB</h3>
+                    <p>Kapasitas lebih besar untuk komunitas berkembang.</p>
+                    <div class="price">Rp 3.000 <small>/bulan</small></div>
+                    <button class="buy-now" data-product-name="Paket 3GB" data-product-price="Rp 3.000">
+                        Beli Sekarang
+                    </button>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150/20B2AA/FFFFFF?text=ULT" alt="Panel Pterodactyl Ultimate">
+                    <h3>Paket Ultimate</h3>
+                    <p>Sumber daya maksimal untuk server besar bebas lag.</p>
+                    <div class="price">Rp 7.000 <small>/bulan</small></div>
+                    <button class="buy-now" data-product-name="Paket Ultimate" data-product-price="Rp 7.000">
+                        Beli Sekarang
+                    </button>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150/FF6347/FFFFFF?text=ADP" alt="Panel Pterodactyl ADP">
+                    <h3>Paket ADP</h3>
+                    <p>Dukungan prioritas dan sumber daya fleksibel.</p>
+                    <div class="price">Rp 17.000 <small>/bulan</small></div>
+                    <button class="buy-now" data-product-name="Paket ADP" data-product-price="Rp 17.000">
+                        Beli Sekarang
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="halaman-pembayaran" class="hidden">
+            <div class="payment-card">
+                <div class="payment-summary">
+                    <h3>Anda membeli: <span id="selected-product-name"></span></h3>
+                    <div class="total-price" id="selected-product-price"></div>
+                </div>
+
+                <h3 style="text-align: center; font-weight: 600; color: #555; margin-bottom: 1.5rem;">Pilih Metode Pembayaran</h3>
+                
+                <div class="payment-options">
+                    <button class="payment-option-btn" data-target="dana-details">
+                        <i class="fas fa-wallet"></i> DANA
+                    </button>
+                    <button class="payment-option-btn" data-target="gopay-details">
+                        <i class="fas fa-money-bill-wave"></i> GOPAY
+                    </button>
+                </div>
+
+                <div id="dana-details" class="payment-details hidden">
+                    <p><strong>Nomor DANA:</strong> 083186560235</p>
+                    <button class="copy-btn" onclick="copyToClipboard('083186560235')">Salin Nomor</button>
+                </div>
+
+                <div id="gopay-details" class="payment-details hidden">
+                    <p><strong>Nomor GOPAY:</strong> 083186560235</p>
+                    <button class="copy-btn" onclick="copyToClipboard('083186560235')">Salin Nomor</button>
+                </div>
+
+                <a href="#" id="whatsapp-confirm-btn" class="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Konfirmasi Setelah Membayar
+                </a>
+                
+                <button id="back-to-products-btn" class="back-btn">
+                    &larr; Pilih Paket Lain
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Panel Pterodactyl Pontianak. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productPage = document.getElementById('halaman-produk');
+            const paymentPage = document.getElementById('halaman-pembayaran');
+            const buyNowButtons = document.querySelectorAll('.buy-now');
+            const backToProductsBtn = document.getElementById('back-to-products-btn');
+            const selectedProductNameEl = document.getElementById('selected-product-name');
+            const selectedProductPriceEl = document.getElementById('selected-product-price');
+            const whatsappConfirmBtn = document.getElementById('whatsapp-confirm-btn');
+            const adminWhatsappNumber = '6283186560235';
+
+            // Payment Options
+            const paymentOptionBtns = document.querySelectorAll('.payment-option-btn');
+            const paymentDetails = document.querySelectorAll('.payment-details');
+
+            buyNowButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const productName = button.dataset.productName;
+                    const productPrice = button.dataset.productPrice;
+
+                    selectedProductNameEl.textContent = productName;
+                    selectedProductPriceEl.textContent = productPrice;
+
+                    const message = `Halo admin, saya mau konfirmasi pembayaran untuk *${productName}*.\n\nNama Akun Panel: [TULIS NAMA AKUN DI SINI]\n\nBerikut saya lampirkan FOTO bukti transfernya. Terima kasih.`;
+                    whatsappConfirmBtn.href = `https://wa.me/${adminWhatsappNumber}?text=${encodeURIComponent(message)}`;
+
+                    productPage.classList.add('hidden');
+                    paymentPage.classList.remove('hidden');
+                    window.scrollTo(0, 0);
+                });
+            });
+
+            backToProductsBtn.addEventListener('click', () => {
+                paymentPage.classList.add('hidden');
+                productPage.classList.remove('hidden');
+                 // Reset payment selection
+                paymentDetails.forEach(detail => detail.classList.add('hidden'));
+                paymentOptionBtns.forEach(btn => btn.classList.remove('active'));
+                window.scrollTo(0, 0);
+            });
+
+            // Handle payment option selection
+            paymentOptionBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Reset all first
+                    paymentDetails.forEach(detail => detail.classList.add('hidden'));
+                    paymentOptionBtns.forEach(b => b.classList.remove('active'));
+
+                    // Activate the selected one
+                    btn.classList.add('active');
+                    const targetId = btn.dataset.target;
+                    document.getElementById(targetId).classList.remove('hidden');
+                });
+            });
+        });
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Nomor berhasil disalin: ' + text);
+            }).catch(err => {
+                console.error('Gagal menyalin teks: ', err);
+                alert('Gagal menyalin nomor.');
+            });
+        }
+    </script>
+</body>
+</html>
+ta-product="Paket 1GB Panel Pterodactyl">
                         Beli Sekarang
                     </a>
                 </div>
