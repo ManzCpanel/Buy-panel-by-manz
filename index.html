@@ -404,6 +404,65 @@ Mohon segera diproses. Terima kasih!`;
     }
   </script>
 </body>
+</html>kelas 'selected' ke kartu yang diklik
+      element.classList.add('selected');
+      
+      // Simpan data produk yang dipilih
+      selectedProductData = { name, price };
+      
+      // Tampilkan tombol lanjut
+      checkoutButton.style.display = 'block';
+    }
+
+    function isValidEmail(email) {
+      // Regex sederhana untuk validasi format email
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+    
+    function startPayment(event) {
+      event.preventDefault(); // Mencegah form dari submit default
+
+      // Nomor WhatsApp Admin (pastikan menggunakan format 62)
+      const nomorAdmin = '6283186560235'; 
+
+      const email = document.getElementById('email').value.trim();
+      const emailReceiver = document.getElementById('emailReceiver').value.trim();
+      
+      // --- Validasi Input ---
+      if (!email || !emailReceiver) {
+        alert('Harap isi semua kolom email!');
+        return;
+      }
+
+      if (!isValidEmail(email) || !isValidEmail(emailReceiver)) {
+        alert('Format salah satu email tidak valid. Mohon periksa kembali.');
+        return;
+      }
+      
+      if (!selectedProductData) {
+          alert('Terjadi kesalahan, produk tidak terpilih. Silakan pilih ulang produk Anda.');
+          backToProductSection();
+          return;
+      }
+
+      // --- Membuat Pesan WhatsApp ---
+      const message = `Halo, saya ingin memesan panel Pterodactyl:
+
+*Paket:* ${selectedProductData.name}
+*Harga:* Rp ${selectedProductData.price.toLocaleString('id-ID')}
+
+*Email Aktif (untuk nota):* ${email}
+*Email Penerima Panel:* ${emailReceiver}
+
+Mohon segera diproses. Terima kasih!`;
+
+      // --- Membuat dan Membuka URL WhatsApp ---
+      const whatsappURL = `https://api.whatsapp.com/send?phone=${nomorAdmin}&text=${encodeURIComponent(message)}`;
+      window.open(whatsappURL, '_blank');
+    }
+  </script>
+</body>
 </html>
  `Halo, saya ingin memesan panel Pterodactyl:
 
@@ -741,7 +800,7 @@ Mohon segera diproses. Terima kasih!`;
     }
   </script>
 </body>
-</html>
+<
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       overflow: hidden;
