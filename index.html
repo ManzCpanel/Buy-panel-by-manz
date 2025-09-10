@@ -15,6 +15,7 @@
       --card-bg-color: #ffffff;
       --text-color: #1f2937;
       --success-color: #10b981;
+      --error-color: #ef4444;
     }
 
     body {
@@ -27,6 +28,8 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
@@ -37,15 +40,16 @@
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       overflow: hidden;
+      text-align: center;
     }
 
+    /* --- Sections --- */
     .product-section, .payment-form {
-      display: none;
+      display: none; /* Disembunyikan secara default */
     }
     
+    /* --- Welcome Screen --- */
     .welcome-screen {
-      text-align: center;
-      padding: 20px 0;
       animation: fadeIn 1s ease-in-out;
     }
     
@@ -78,6 +82,7 @@
       margin-bottom: 30px;
     }
     
+    /* --- Tombol --- */
     .action-btn {
       background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
       color: white;
@@ -91,6 +96,8 @@
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       text-transform: uppercase;
       letter-spacing: 1px;
+      display: inline-block;
+      width: auto;
     }
 
     .action-btn:hover {
@@ -98,6 +105,21 @@
       box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
     }
     
+    .back-btn {
+      background: #6c757d;
+      float: left;
+      padding: 10px 20px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    
+    #continueToPayment {
+        display: none; /* Sembunyikan di awal */
+        margin-top: 30px;
+        width: 100%;
+    }
+
+    /* --- Product Section --- */
     .product-section h2 {
       font-size: 2em;
       border-bottom: 3px solid var(--primary-color);
@@ -162,14 +184,14 @@
         margin-bottom: 8px;
     }
     
+    /* --- Payment Form --- */
     .payment-form {
         animation: fadeIn 0.5s;
     }
     
-    .payment-form input, .payment-form select {
+    .payment-form input {
         width: 100%;
         padding: 12px;
-        margin-top: 8px;
         margin-bottom: 16px;
         border: 1px solid #d1d5db;
         border-radius: 8px;
@@ -180,7 +202,7 @@
         display: block;
         text-align: left;
         font-weight: 600;
-        margin-top: 10px;
+        margin-bottom: 8px;
     }
 
     #orderSummary {
@@ -189,19 +211,7 @@
         border-radius: 8px;
         text-align: left;
         margin-bottom: 20px;
-    }
-    
-    .back-btn {
-      background: #6c757d;
-      float: left;
-      padding: 10px 20px;
-      font-size: 14px;
-    }
-    
-    #continueToPayment {
-        display: none;
-        margin-top: 30px;
-        width: 100%;
+        border: 1px solid #e5e7eb;
     }
     
   </style>
@@ -220,38 +230,38 @@
 
     <div class="product-section" id="productSection">
       <button class="action-btn back-btn" onclick="backToWelcome()">←</button>
-      <h2 style="text-align: center;">✨ Paket Pilihan ✨</h2>
+      <h2>✨ Paket Pilihan ✨</h2>
       <div class="products">
         <div class="product-card" onclick="selectProduct(this, 'PANEL BOT 1GB', 2000)">
           <div class="product-name">PANEL BOT 1GB</div>
           <div class="product-price">Rp 2.000</div>
           <ul>
-            <li><span class="emoji">💾</span> RAM: 1000 MB</li>
-            <li><span class="emoji">⚙️</span> CPU: 40%</li>
+            <li>💾 RAM: 1000 MB</li>
+            <li>⚙️ CPU: 40%</li>
           </ul>
         </div>
         <div class="product-card" onclick="selectProduct(this, 'PANEL BOT 2GB', 4000)">
           <div class="product-name">PANEL BOT 2GB</div>
           <div class="product-price">Rp 4.000</div>
           <ul>
-            <li><span class="emoji">💾</span> RAM: 2000 MB</li>
-            <li><span class="emoji">⚙️</span> CPU: 80%</li>
+            <li>💾 RAM: 2000 MB</li>
+            <li>⚙️ CPU: 80%</li>
           </ul>
         </div>
         <div class="product-card" onclick="selectProduct(this, 'PANEL BOT 3GB', 6000)">
           <div class="product-name">PANEL BOT 3GB</div>
           <div class="product-price">Rp 6.000</div>
           <ul>
-            <li><span class="emoji">💾</span> RAM: 3000 MB</li>
-            <li><span class="emoji">⚙️</span> CPU: 120%</li>
+            <li>💾 RAM: 3000 MB</li>
+            <li>⚙️ CPU: 120%</li>
           </ul>
         </div>
          <div class="product-card" onclick="selectProduct(this, 'PANEL BOT 5GB', 10000)">
           <div class="product-name">PANEL BOT 5GB</div>
           <div class="product-price">Rp 10.000</div>
           <ul>
-            <li><span class="emoji">💾</span> RAM: 5000 MB</li>
-            <li><span class="emoji">⚙️</span> CPU: 200%</li>
+            <li>💾 RAM: 5000 MB</li>
+            <li>⚙️ CPU: 200%</li>
           </ul>
         </div>
       </div>
@@ -262,30 +272,44 @@
 
     <div class="payment-form" id="paymentForm">
       <button class="action-btn back-btn" onclick="backToProductSection()">←</button>
-      <h2 style="text-align: center;">🛒 Checkout</h2>
+      <h2>🛒 Checkout</h2>
       <div id="orderSummary">
         <h3>Ringkasan Order</h3>
         <p><strong>Paket:</strong> <span id="summaryPackage"></span></p>
         <p><strong>Harga:</strong> <span id="summaryPrice"></span></p>
       </div>
-      <label for="email">Email Aktif Anda:</label>
-      <input type="email" id="email" placeholder="contoh@gmail.com" required>
-      <label for="emailReceiver">Email Penerima Panel:</label>
-      <input type="email" id="emailReceiver" placeholder="contoh@gmail.com" required>
-      <button class="action-btn" style="width: 100%; margin-top: 20px;" onclick="startPayment()">Pesan via WhatsApp</button>
+      <form id="checkoutForm" onsubmit="startPayment(event)">
+        <label for="email">Email Aktif Anda (untuk nota):</label>
+        <input type="email" id="email" placeholder="contoh@gmail.com" required>
+        
+        <label for="emailReceiver">Email Penerima Panel:</label>
+        <input type="email" id="emailReceiver" placeholder="penerima@gmail.com" required>
+        
+        <button type="submit" class="action-btn" style="width: 100%; margin-top: 20px;">
+          Pesan via WhatsApp
+        </button>
+      </form>
     </div>
   </div>
 
   <script>
+    // --- Variabel Global ---
     let selectedProductData = null;
     const welcomeScreen = document.getElementById('welcomeScreen');
     const productSection = document.getElementById('productSection');
     const paymentForm = document.getElementById('paymentForm');
     const checkoutButton = document.getElementById('continueToPayment');
 
+    // --- Fungsi Navigasi ---
+    function showScreen(screenToShow) {
+        welcomeScreen.style.display = 'none';
+        productSection.style.display = 'none';
+        paymentForm.style.display = 'none';
+        screenToShow.style.display = 'block';
+    }
+
     function showProductSection() {
-      welcomeScreen.style.display = 'none';
-      productSection.style.display = 'block';
+      showScreen(productSection);
     }
 
     function showPaymentForm() {
@@ -295,49 +319,93 @@
       }
       document.getElementById('summaryPackage').textContent = selectedProductData.name;
       document.getElementById('summaryPrice').textContent = 'Rp ' + selectedProductData.price.toLocaleString('id-ID');
-      productSection.style.display = 'none';
-      paymentForm.style.display = 'block';
+      showScreen(paymentForm);
     }
     
     function backToWelcome() {
-      productSection.style.display = 'none';
-      welcomeScreen.style.display = 'block';
+      showScreen(welcomeScreen);
     }
 
     function backToProductSection() {
-      paymentForm.style.display = 'none';
-      productSection.style.display = 'block';
+      // Reset pilihan produk saat kembali
+      if (selectedProductData) {
+          const selectedCard = document.querySelector('.product-card.selected');
+          if (selectedCard) {
+              selectedCard.classList.remove('selected');
+          }
+          selectedProductData = null;
+          checkoutButton.style.display = 'none';
+      }
+      showScreen(productSection);
     }
 
+    // --- Fungsi Logika ---
     function selectProduct(element, name, price) {
+      // Hapus kelas 'selected' dari semua kartu produk
       const allProductCards = document.querySelectorAll('.product-card');
-      allProductCards.forEach(card => {
-        card.classList.remove('selected');
-      });
+      allProductCards.forEach(card => card.classList.remove('selected'));
+      
+      // Tambahkan kelas 'selected' ke kartu yang diklik
       element.classList.add('selected');
-      selectedProductData = { name: name, price: price };
+      
+      // Simpan data produk yang dipilih
+      selectedProductData = { name, price };
+      
+      // Tampilkan tombol lanjut
       checkoutButton.style.display = 'block';
     }
+
+    function isValidEmail(email) {
+      // Regex sederhana untuk validasi format email
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
     
-    function startPayment() {
-      // Nomor WhatsApp tujuan untuk menerima pesanan
+    function startPayment(event) {
+      event.preventDefault(); // Mencegah form dari submit default
+
+      // Nomor WhatsApp Admin (pastikan menggunakan format 62)
       const nomorAdmin = '6283186560235'; 
 
-      const email = document.getElementById('email').value;
-      const emailReceiver = document.getElementById('emailReceiver').value;
+      const email = document.getElementById('email').value.trim();
+      const emailReceiver = document.getElementById('emailReceiver').value.trim();
       
+      // --- Validasi Input ---
       if (!email || !emailReceiver) {
         alert('Harap isi semua kolom email!');
         return;
       }
+
+      if (!isValidEmail(email) || !isValidEmail(emailReceiver)) {
+        alert('Format salah satu email tidak valid. Mohon periksa kembali.');
+        return;
+      }
       
       if (!selectedProductData) {
-          alert('Terjadi kesalahan, silakan pilih ulang produk Anda.');
+          alert('Terjadi kesalahan, produk tidak terpilih. Silakan pilih ulang produk Anda.');
           backToProductSection();
           return;
       }
 
+      // --- Membuat Pesan WhatsApp ---
       const message = `Halo, saya ingin memesan panel Pterodactyl:
+
+*Paket:* ${selectedProductData.name}
+*Harga:* Rp ${selectedProductData.price.toLocaleString('id-ID')}
+
+*Email Aktif (untuk nota):* ${email}
+*Email Penerima Panel:* ${emailReceiver}
+
+Mohon segera diproses. Terima kasih!`;
+
+      // --- Membuat dan Membuka URL WhatsApp ---
+      const whatsappURL = `https://api.whatsapp.com/send?phone=${nomorAdmin}&text=${encodeURIComponent(message)}`;
+      window.open(whatsappURL, '_blank');
+    }
+  </script>
+</body>
+</html>
+ `Halo, saya ingin memesan panel Pterodactyl:
 
 *Paket:* ${selectedProductData.name}
 *Harga:* Rp ${selectedProductData.price.toLocaleString('id-ID')}
