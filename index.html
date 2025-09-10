@@ -354,3 +354,323 @@ Mohon segera diproses. Terima kasih!`;
   </script>
 </body>
 </html>
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .product-section, .payment-form {
+      display: none;
+    }
+    
+    .welcome-screen {
+      text-align: center;
+      padding: 20px 0;
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .welcome-screen .logo {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+
+    .welcome-screen h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: var(--secondary-color);
+      margin: 5px 0;
+    }
+    
+    .welcome-screen h1.brand {
+        background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .welcome-screen p {
+      color: #6b7280;
+      font-size: 1.1em;
+      margin-bottom: 30px;
+    }
+    
+    .action-btn {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      padding: 16px 35px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
+    }
+    
+    .product-section h2 {
+      font-size: 2em;
+      border-bottom: 3px solid var(--primary-color);
+      display: inline-block;
+      padding-bottom: 5px;
+      margin-bottom: 30px;
+    }
+    
+    .products {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    @media (min-width: 600px) {
+      .products {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .product-card {
+      border: 2px solid #e5e7eb;
+      padding: 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      border-color: var(--primary-color);
+    }
+
+    .product-card.selected {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      background-color: #eff6ff;
+    }
+    
+    .product-card .product-name {
+        font-weight: 600;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    
+    .product-card .product-price {
+        font-size: 1.4em;
+        font-weight: 700;
+        color: var(--success-color);
+        margin-bottom: 15px;
+    }
+    
+    .product-card ul {
+        list-style: none;
+        padding: 0;
+        color: #4b5563;
+    }
+
+    .product-card li {
+        margin-bottom: 8px;
+    }
+    
+    .payment-form {
+        animation: fadeIn 0.5s;
+    }
+    
+    .payment-form input, .payment-form select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        margin-bottom: 16px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+    
+    .payment-form label {
+        display: block;
+        text-align: left;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    #orderSummary {
+        background: #f9fafb;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    
+    .back-btn {
+      background: #6c757d;
+      float: left;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    
+    #continueToPayment {
+        display: none;
+        margin-top: 30px;
+        width: 100%;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="welcome-screen" id="welcomeScreen">
+      <div class="logo">🚀</div>
+      <h1>SELAMAT DATANG</h1>
+      <h1 class="brand">MANZ</h1>
+      <p>Beli kebutuhan bot hosting dengan cepat dan aman.</p>
+      <button class="action-btn" onclick="showProductSection()">
+        Lihat Produk
+      </button>
+    </div>
+
+    <div class="product-section" id="productSection">
+      <button class="action-btn back-btn" onclick="backToWelcome()">←</button>
+      <h2 style="text-align: center;">✨ Paket Pilihan ✨</h2>
+      <div class="products">
+        <div class="product-card" onclick="selectProduct(this, 'PANEL BOT 1GB', 2000)">
+          <div class="product-name">PANEL BOT 1GB</div>
+          <div class="product-price">Rp 2.000</div>
+          <ul>
+            <li><span class="emoji">💾</span> RAM: 1000 MB</li>
+            <li><span class="emoji">⚙️</span> CPU: 40%</li>
+          </ul>
+        </div>
+        <div class="product-card" onclick="selectProduct(this, 'PANEL BOT 2GB', 4000)">
+          <div class="product-name">PANEL BOT 2GB</div>
+          <div class="product-price">Rp 4.000</div>
+          <ul>
+            <li><span class="emoji">💾</span> RAM: 2000 MB</li>
+            <li><span class="emoji">⚙️</span> CPU: 80%</li>
+          </ul>
+        </div>
+        <div class="product-card" onclick="selectProduct(this, 'PANEL BOT 3GB', 6000)">
+          <div class="product-name">PANEL BOT 3GB</div>
+          <div class="product-price">Rp 6.000</div>
+          <ul>
+            <li><span class="emoji">💾</span> RAM: 3000 MB</li>
+            <li><span class="emoji">⚙️</span> CPU: 120%</li>
+          </ul>
+        </div>
+         <div class="product-card" onclick="selectProduct(this, 'PANEL BOT 5GB', 10000)">
+          <div class="product-name">PANEL BOT 5GB</div>
+          <div class="product-price">Rp 10.000</div>
+          <ul>
+            <li><span class="emoji">💾</span> RAM: 5000 MB</li>
+            <li><span class="emoji">⚙️</span> CPU: 200%</li>
+          </ul>
+        </div>
+      </div>
+      <button id="continueToPayment" class="action-btn" onclick="showPaymentForm()">
+        Lanjut ke Pembayaran 🛒
+      </button>
+    </div>
+
+    <div class="payment-form" id="paymentForm">
+      <button class="action-btn back-btn" onclick="backToProductSection()">←</button>
+      <h2 style="text-align: center;">🛒 Checkout</h2>
+      <div id="orderSummary">
+        <h3>Ringkasan Order</h3>
+        <p><strong>Paket:</strong> <span id="summaryPackage"></span></p>
+        <p><strong>Harga:</strong> <span id="summaryPrice"></span></p>
+      </div>
+      <label for="email">Email Aktif Anda:</label>
+      <input type="email" id="email" placeholder="contoh@gmail.com" required>
+      <label for="emailReceiver">Email Penerima Panel:</label>
+      <input type="email" id="emailReceiver" placeholder="contoh@gmail.com" required>
+      <button class="action-btn" style="width: 100%; margin-top: 20px;" onclick="startPayment()">Pesan via WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+    let selectedProductData = null;
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const productSection = document.getElementById('productSection');
+    const paymentForm = document.getElementById('paymentForm');
+    const checkoutButton = document.getElementById('continueToPayment');
+
+    function showProductSection() {
+      welcomeScreen.style.display = 'none';
+      productSection.style.display = 'block';
+    }
+
+    function showPaymentForm() {
+      if (!selectedProductData) {
+        alert("Silakan pilih produk terlebih dahulu!");
+        return;
+      }
+      document.getElementById('summaryPackage').textContent = selectedProductData.name;
+      document.getElementById('summaryPrice').textContent = 'Rp ' + selectedProductData.price.toLocaleString('id-ID');
+      productSection.style.display = 'none';
+      paymentForm.style.display = 'block';
+    }
+    
+    function backToWelcome() {
+      productSection.style.display = 'none';
+      welcomeScreen.style.display = 'block';
+    }
+
+    function backToProductSection() {
+      paymentForm.style.display = 'none';
+      productSection.style.display = 'block';
+    }
+
+    function selectProduct(element, name, price) {
+      const allProductCards = document.querySelectorAll('.product-card');
+      allProductCards.forEach(card => {
+        card.classList.remove('selected');
+      });
+      element.classList.add('selected');
+      selectedProductData = { name: name, price: price };
+      checkoutButton.style.display = 'block';
+    }
+    
+    function startPayment() {
+      // Nomor WhatsApp tujuan untuk menerima pesanan
+      const nomorAdmin = '6283186560235'; 
+
+      const email = document.getElementById('email').value;
+      const emailReceiver = document.getElementById('emailReceiver').value;
+      
+      if (!email || !emailReceiver) {
+        alert('Harap isi semua kolom email!');
+        return;
+      }
+      
+      if (!selectedProductData) {
+          alert('Terjadi kesalahan, silakan pilih ulang produk Anda.');
+          backToProductSection();
+          return;
+      }
+
+      const message = `Halo, saya ingin memesan panel Pterodactyl:
+
+*Paket:* ${selectedProductData.name}
+*Harga:* Rp ${selectedProductData.price.toLocaleString('id-ID')}
+
+*Email Aktif (untuk nota):* ${email}
+*Email Penerima Panel:* ${emailReceiver}
+
+Mohon segera diproses. Terima kasih!`;
+
+      const whatsappURL = `https://api.whatsapp.com/send?phone=${nomorAdmin}&text=${encodeURIComponent(message)}`;
+
+      window.open(whatsappURL, '_blank');
+    }
+  </script>
+</body>
+</html>
